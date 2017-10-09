@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS Video Buttons</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			:root {
+				--button-size: 74px;
+				--button-color: gray;
+				--hover-color: lightskyblue;
+				--active-color: darkorange;
+			}
+			body {
+				display: flex;
+			}
+			.button {
+				box-sizing: border-box;
+				width: var(--button-size);
+				height: var(--button-size);
+				display: flex;
+				margin: 40px;
+				cursor: pointer;
+				transition: all 0.25s ease;
+			}
+			.play {
+				border-style: solid;
+				border-width: calc(var(--button-size) / 2) 0 calc(var(--button-size) / 2) var(--button-size);
+				border-color: transparent transparent transparent var(--button-color);
+			}
+			.play:hover {
+				border-color: transparent transparent transparent var(--hover-color);
+			}
+			.play:active {
+				border-color: transparent transparent transparent var(--active-color);
+			}
+			.pause {
+				border-style: solid;
+				border-width: 0 calc(var(--button-size) / 4);
+				border-color: transparent var(--button-color);
+			}
+			.pause:hover {
+				border-color: transparent var(--hover-color);
+			}
+			.pause:active {
+				border-color: transparent var(--active-color);
+			}
+			.inner-button {
+				border: solid;
+				box-sizing: border-box;
+				width: calc(var(--button-size) / 2);
+				height: calc(var(--button-size) / 2);
+			}
+			.skip-back {
+				border-width: calc(var(--button-size) / 4) calc(var(--button-size) / 2) calc(var(--button-size) / 4) 0;
+				border-color: transparent var(--button-color) transparent transparent;
+				margin: auto 0;
+				transition: all 0.25s ease;
+			}
+			.button:hover .skip-back {
+				border-color: transparent var(--hover-color) transparent transparent;;
+			}
+			.button:active .skip-back {
+				border-color: transparent var(--active-color) transparent transparent;;
+			}
+			.skip-forward {
+				border-width: calc(var(--button-size) / 4) 0 calc(var(--button-size) / 4) calc(var(--button-size) / 2);
+				border-color: transparent transparent transparent var(--button-color);
+				margin: auto 0;
+				transition: all 0.25s ease;
+			}
+			.button:hover .skip-forward {
+				border-color: transparent transparent transparent var(--hover-color);
+			}
+			.button:active .skip-forward {
+				border-color: transparent transparent transparent var(--active-color);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="button play"></div>
+		<div class="button pause"></div>
+		<div class="button">
+			<div class="inner-button skip-back"></div>
+			<div class="inner-button skip-back"></div>
+		</div>
+		<div class="button">
+			<div class="inner-button skip-forward"></div>
+			<div class="inner-button skip-forward"></div>
+		</div>
+	</body>
+</html>
