@@ -1,3 +1,3 @@
 **Snippets**
 
-A littl repo to keep useful snippets.
+A little repo to keep useful snippets.
