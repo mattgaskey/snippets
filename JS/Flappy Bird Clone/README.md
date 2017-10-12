@@ -9,8 +9,8 @@ TODO:
 * Add Rain &#10004;  
 * Explore Leveling  
 * Look into lighting for:  
-  * Lightning  
-	* Making pipes harder to see as level increases  
+  * Lightning
+  * Making pipes harder to see as level increases  
 * Background graphics  
   * Cityscape  
   * Treescape  
