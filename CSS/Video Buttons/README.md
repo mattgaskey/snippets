@@ -1,4 +1,4 @@
-#Video Buttons
+# Video Buttons
 
 Pure CSS Video buttons for play, pause and skip.
 
