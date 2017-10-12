@@ -6,12 +6,12 @@ Base app coded along with video.  Improvements made little by little.
 
 TODO:
 
-  *Add Rain &#10004;
-  *Explore Leveling
-  *Look into lighting for:
-    *Lightning
-    *Making pipes harder to see as level increases
-  *Background graphics
-    *Cityscape
-    *Treescape
-    *etc
+  *Add Rain &#10004;  
+  *Explore Leveling  
+  *Look into lighting for:  
+    *Lightning  
+    *Making pipes harder to see as level increases  
+  *Background graphics  
+    *Cityscape  
+    *Treescape  
+    *etc  
