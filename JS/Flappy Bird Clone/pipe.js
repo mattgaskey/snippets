@@ -27,9 +27,9 @@ function Pipe() {
   }
   //pipe render method
   this.show = function() {
-    fill(255);
+    fill(240, 255, 255);
     if (this.highlight) {
-      fill(255, 0, 0);
+      fill(150, 10, 10);
     }
     rect(this.x, 0, this.w, this.top);
     rect(this.x, height - this.bottom, this.w, this.bottom);

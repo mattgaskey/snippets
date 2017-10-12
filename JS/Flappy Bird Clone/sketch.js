@@ -1,6 +1,9 @@
 let bird;
-//array to store generated pipes until they are off the screen
+//apparent wind intensity
+let speed = 2;
+//array to store generated pipes/raindrops until they are off the screen
 let pipes = [];
+let raindrops = [];
 //vars to store image locations
 let img_bird;
 
@@ -25,7 +28,11 @@ function setup() {
   createCanvas(400, 600);
   //set the frameRate, default=60
   frameRate(60);
-  
+
+  //populate the rain field
+  for (var i = 0; i < 1000; i++) {
+    raindrops[i] = new Rain();
+  }
   //add a pipe to the array
   pipes.push(new Pipe());
   pipes.push(new Pipe());
@@ -51,6 +58,13 @@ function draw() {
 
 	//set the background color or image
   background(0);
+
+
+  //draw the rain field with drops(n) where n = score*2
+  for (var i = 0; i < (score)*2; i++) {
+    raindrops[i].update();
+    raindrops[i].show();
+  }
 
   //add new pipes as the frames progress
   if (frameCount % frames/1.5 === 0) {
