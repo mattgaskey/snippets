@@ -7,8 +7,8 @@ function Ball() {
 	this.reflectY = false;
 	this.reflectX = false;
 
-	this.vx = random(1, this.velocity);
-	this.vy = random(1, this.velocity);
+	this.vx = round(random(1, this.velocity));
+	this.vy = round(random(1, this.velocity));
 
 	this.show = function() {
 		fill(255);
@@ -28,14 +28,14 @@ function Ball() {
 			this.reflectX = false;
 			}
 
-			if ((this.left <= paddleX + 4 && (this.top + 3 <= paddleLeft.top + 10 || this.top + 3 >= paddleLeft.bot - 10)) ||
-					(this.left >= width - paddleX - 4 && (this.top + 3 <= paddleRight.top + 10 || this.top + 3 >= paddleRight.bot - 10))
-					) {
-				this.vx = random(1, this.velocity)*1.5;
-				this.vy = random(1, this.velocity)*1.5;
+		if ((this.left <= paddleX + 4 && (this.top + 3 <= paddleLeft.top + 10 || this.top + 3 >= paddleLeft.bot - 10)) ||
+				(this.left >= width - paddleX - 4 && (this.top + 3 <= paddleRight.top + 10 || this.top + 3 >= paddleRight.bot - 10))
+				) {
+				this.vx = round(random(this.velocity, this.velocity*2));
+				this.vy = round(random(this.velocity, this.velocity*2));
 			} else if (this.vx > this.velocity || this.vy > this.velocity) {
-				this.vx = random(1, this.velocity);
-				this.vy = random(1, this.velocity);
+				this.vx = round(random(1, this.velocity));
+				this.vy = round(random(1, this.velocity));
 			}
 
 		this.reflectY ? this.top += this.vy : this.top -= this.vy;
