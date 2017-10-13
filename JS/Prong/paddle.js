@@ -2,7 +2,7 @@ function Paddle(side) {
 	this.length = 40;
 	this.top = height/2 - this.length/2;
 	this.bot = height/2 + this.length/2;
-	this.speed = 4;
+	this.speed = 8;
 
 	this.show = function() {
 		stroke(255, 0, 0);

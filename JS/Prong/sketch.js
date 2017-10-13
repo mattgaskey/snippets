@@ -1,7 +1,7 @@
 let paddleLeft;
 let paddleRight;
 let ball;
-let paddleX = 20;
+let paddleX = 15;
 let leftUp = false;
 let leftDown = false;
 let rightUp = false;

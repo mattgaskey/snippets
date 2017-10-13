@@ -3,7 +3,7 @@ function Ball() {
 	this.top = height/2 - this.size/2;
 	this.left = width/2 + this.size/2;
 
-	this.velocity = 3;
+	this.velocity = 6;
 	this.reflectY = false;
 	this.reflectX = false;
 
@@ -21,11 +21,13 @@ function Ball() {
 		if (this.top <= 0 || this.top >= height - this.size) {
 			this.reflectY = !this.reflectY;
 		}
-		if ((this.left <= paddleX + 4 && this.top >= paddleLeft.top - this.size && this.top <= paddleLeft.bot + this.size) || 
-				(this.left >= width - paddleX - 4 && this.top >= paddleRight.top - this.size && this.top <= paddleRight.bot + this.size)
-				) {
-			this.reflectX = !this.reflectX;
-			console.log(this.top + 3, paddleLeft.top, paddleLeft.bot);
+		//this is messy; need to find a better way to calculate the position of the ball relative to the paddle and test for rebound/point lost
+		if (this.left <= paddleX + 4 && this.top >= paddleLeft.top - this.size && this.top <= paddleLeft.bot + this.size) {
+			this.reflectX = true;
+			} else if (this.left >= width - paddleX - 4 && this.top >= paddleRight.top - this.size && this.top <= paddleRight.bot + this.size) {
+			this.reflectX = false;
+			}
+
 			if ((this.left <= paddleX + 4 && (this.top + 3 <= paddleLeft.top + 10 || this.top + 3 >= paddleLeft.bot - 10)) ||
 					(this.left >= width - paddleX - 4 && (this.top + 3 <= paddleRight.top + 10 || this.top + 3 >= paddleRight.bot - 10))
 					) {
@@ -35,10 +37,10 @@ function Ball() {
 				this.vx = random(1, this.velocity);
 				this.vy = random(1, this.velocity);
 			}
-		}
 
 		this.reflectY ? this.top += this.vy : this.top -= this.vy;
 
 		this.reflectX ? this.left += this.vx : this.left -= this.vx;
 	}
+
 }
