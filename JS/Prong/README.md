@@ -3,6 +3,8 @@
 
 A p5.js clone of the classic Pong.  I believe I am the first to attempt this. /s
 
+Play me [here](https://codepen.io/mattgaskey/pen/qPMRdK/)
+
 DONE:
 
 * Game steps

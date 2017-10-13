@@ -4,6 +4,8 @@ A p5.js implementation of [The Coding Train](https://www.youtube.com/watch?v=cXg
 
 Base app coded along with video.  Improvements made little by little.
 
+Play me [here](https://codepen.io/mattgaskey/pen/jGKVxV)
+
 TODO:
 
 * Add Rain &#10004;  
