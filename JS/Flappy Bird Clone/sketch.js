@@ -1,6 +1,6 @@
 let bird;
 //apparent wind intensity
-let speed = 2;
+let speed = 5;
 //array to store generated pipes/raindrops until they are off the screen
 let pipes = [];
 let raindrops = [];

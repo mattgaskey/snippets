@@ -20,26 +20,32 @@ function Ball() {
 	this.update = function() {
 		if (this.top <= 0 || this.top >= height - this.size) {
 			this.reflectY = !this.reflectY;
-		}
-		//this is messy; need to find a better way to calculate the position of the ball relative to the paddle and test for rebound/point lost
-		if (this.left <= paddleX + 4 && this.top >= paddleLeft.top - this.size && this.top <= paddleLeft.bot + this.size) {
+			}
+		let contactLeftX = this.left <= paddleX + this.vx && this.left >= paddleX;
+		let contactRightX = this.left >= width - paddleX - this.vx && this.left <= width - paddleX;
+		let contactLeftY = this.top >= paddleLeft.top - this.size && this.top <= paddleLeft.bot + this.size;
+		let contactRightY = this.top >= paddleRight.top - this.size && this.top <= paddleRight.bot + this.size;
+
+		if (contactLeftX && contactLeftY) {
 			this.reflectX = true;
-			} else if (this.left >= width - paddleX - 4 && this.top >= paddleRight.top - this.size && this.top <= paddleRight.bot + this.size) {
+			} else if (contactRightX && contactRightY) {
 			this.reflectX = false;
 			}
 
-		if ((this.left <= paddleX + 4 && (this.top + 3 <= paddleLeft.top + 10 || this.top + 3 >= paddleLeft.bot - 10)) ||
-				(this.left >= width - paddleX - 4 && (this.top + 3 <= paddleRight.top + 10 || this.top + 3 >= paddleRight.bot - 10))
-				) {
-				this.vx = round(random(this.velocity, this.velocity*2));
-				this.vy = round(random(this.velocity, this.velocity*2));
-			} else if (this.vx > this.velocity || this.vy > this.velocity) {
-				this.vx = round(random(1, this.velocity));
-				this.vy = round(random(1, this.velocity));
+		let marginOfError = 10;
+		let paddleLeftOffset = this.top + 3 <= paddleLeft.top + marginOfError || this.top + 3 >= paddleLeft.bot - marginOfError;
+		let paddleRightOffset = this.top + 3 <= paddleRight.top + marginOfError || this.top + 3 >= paddleRight.bot - marginOfError;
+
+		if (contactLeftX && paddleLeftOffset || contactRightX && paddleRightOffset) {
+				this.vx = round(random(this.vx, this.vx*1.5));
+				this.vy = round(random(this.vy, this.vy*1.5));
+			} else if ((contactLeftX && !paddleLeftOffset || contactRightX && !paddleRightOffset) && 
+						(this.vx > this.velocity || this.vy > this.velocity)) {
+				this.vx = round(this.velocity * random(0.3, 1));
+				this.vy = round(this.velocity * random(0.3, 1));
 			}
 
 		this.reflectY ? this.top += this.vy : this.top -= this.vy;
-
 		this.reflectX ? this.left += this.vx : this.left -= this.vx;
 	}
 

@@ -17,14 +17,12 @@ DONE:
 * Fluid paddle movement
 * 2-Player mode (key presses do not interfere with each other)
 * Ball velocity and angle updates according to how well the ball is hit in the center of the paddle
+* Calculated paddle hit as a power of ball velocity so hit is in the range of pixels rather than to a fixed point
 
 TODO:
 
-* Bug fixes:
-	* If ball hits top edge of paddle, it gets grabbed 
-		* Check reflectX updates on specific pixels
-
 * Paddle speed should update as well?
-* Increase velocity upper threshold as game continues
+* Increase difficulty as game continues
 	* Add a hit counter?
 	* Add a timer?
+	* Based on total points?

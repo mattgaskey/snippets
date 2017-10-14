@@ -14,6 +14,8 @@ let score = {
 	right: 0
 }
 
+
+
 function setup() {
 	createCanvas(800, 600);
 	
