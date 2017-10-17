@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Spinner</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <link rel="stylesheet" href="style.css"> -->
+		<style>
+			html, body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				position: relative;
+			}
+			.progress-ring__circle {
+				transition: stroke-dashoffset 1s cubic-bezier(1,-.37,.37,1);
+				transform: rotate(-79deg);
+				transform-origin: 50% 50%;
+			}
+		</style>
+	</head>
+	<body>
+			<svg 
+				class="progress-ring"
+				height="120"
+				width="120"
+			>
+				<circle 
+					class="progress-ring__circle"
+					stroke="black"
+					stroke-width="4"
+					fill="transparent"
+					r="52"
+					cx="60"
+					cy="60"
+				/>
+			</svg>
+
+			<script>
+				const circle = document.querySelector('.progress-ring__circle');
+				const circum = circle.r.baseVal.value * 2 * Math.PI;
+				
+				circle.style.strokeDasharray = circum, circum;
+				circle.style.strokeDashoffset = circum;
+
+				const rotation = setInterval(function() {
+					circle.style.strokeDashoffset -= circum;
+				}, 1000);
+			</script>
+
+		<!-- <script src='js.js'></script> -->
+	</body>
+</html>

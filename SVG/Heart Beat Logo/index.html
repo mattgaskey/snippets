@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Heart Beat Logo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <link rel="stylesheet" href="style.css"> -->
+		<style>
+			html, body {
+			  margin: 0;
+			  padding: 0;
+			  overflow: hidden;
+			}
+
+			.heart-rate {
+			  display: flex;
+			  align-items: center;
+			  justify-content: center;
+			  height: 100vh;
+			  position: relative;
+			}
+
+			.heart-rate__line {
+			  transition: stroke-dashoffset 1s cubic-bezier(1,0,.37,1);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="heart-rate">
+		 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="300px" height="200px" viewBox="0 0 300 200" enable-background="new 0 0 300 200" xml:space="preserve">
+		    <polyline 
+		      fill="none" 
+		      stroke="#009B9E" 
+		      stroke-width="3"
+		      stroke-linejoin="round"
+		      points="0,100 75,100 50,190 110,10 150,130 190,10 250,190 225,100 300,100"
+		      class="heart-rate__line"
+		    />
+		  </svg>
+		</div>
+
+		<script>
+			const line = document.querySelector(".heart-rate__line");
+
+			let totalLength = 0;
+			let prevPos;
+
+			for (let i = 0; i < line.points.numberOfItems; i++) {
+				let pos = line.points.getItem(i);
+				if (i > 0) {
+					totalLength += Math.sqrt(
+						Math.pow(pos.x - prevPos.x, 2) + Math.pow(pos.y - prevPos.y, 2)
+					);
+				}
+				prevPos = pos;
+			}
+
+			line.style.strokeDasharray = `${totalLength} ${totalLength}`;
+			line.style.strokeDashoffset = totalLength;
+
+			const heartBeat = setInterval(function() {
+				line.style.strokeDashoffset -= totalLength;
+			}, 1500);
+
+		</script>
+	</body>
+</html>
