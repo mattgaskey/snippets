@@ -4,6 +4,11 @@ let ammos = [];
 let img_invader;
 let leftDown = false;
 let rightDown = false;
+let score = 0;
+let wave;
+const randNumber = function () {
+	return round(random(4, 14));
+};
 
 function preload() {
 	img_invader = loadImage('invader.png');
@@ -12,9 +17,7 @@ function preload() {
 function setup() {
 	createCanvas(1000, 800);
 	ship = new Ship();
-	for (let i = 0; i <= 20; i ++) {
-		invaders.push(new Invader(i*40+20, 40));
-	}
+	attack(randNumber());
 }
 
 function draw() {
@@ -31,12 +34,18 @@ function draw() {
 			if (ammos[i].hits(invaders[j])) {
 				ammos[i].dissolve();
 				invaders[j].dissolve();
+				score += 10;
 			}
 		}
 	}
 
 	for (let i = 0; i < invaders.length; i++) {
 		invaders[i].show();
+		invaders[i].fall();
+	}
+
+	if (frameCount % 120 === 0) {
+		attack(randNumber());
 	}
 
 	for (let i = ammos.length - 1; i >= 0; i--) {
@@ -57,6 +66,12 @@ function draw() {
 
 	if (rightDown) {
 		ship.move(ship.speed);
+	}
+}
+
+function attack(rand) {
+	for (let i = 0; i <= rand; i ++) {
+		invaders.push(new Invader(i * 60 + 60, 30));
 	}
 }
 
