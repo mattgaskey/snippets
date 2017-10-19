@@ -1,7 +1,7 @@
 function Ship() {
 	this.x = width/2;
 	this.size = 30;
-	this.speed = 5;
+	this.speed = 4;
 
 	this.show = function() {
 		fill(255);

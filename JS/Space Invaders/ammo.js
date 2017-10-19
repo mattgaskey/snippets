@@ -20,7 +20,7 @@ function Ammo(x, y) {
 	}
 
 	this.hits = function(invader) {
-		var d = dist(this.x, this.y, invader.x, invader.y);
+		var d = dist(this.x, this.y, invader.x + 15, invader.y);
 		return (d < this.size / 2 + invader.size / 2);
 	}
 }

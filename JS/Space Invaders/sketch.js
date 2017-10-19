@@ -4,8 +4,9 @@ let ammos = [];
 let img_invader;
 let leftDown = false;
 let rightDown = false;
+let spaceDown = false;
 let score = 0;
-let wave;
+let waveCount = 4;
 const randNumber = function () {
 	return round(random(4, 14));
 };
@@ -44,8 +45,10 @@ function draw() {
 		invaders[i].fall();
 	}
 
-	if (frameCount % 120 === 0) {
-		attack(randNumber());
+	for (let i = 0; i <= waveCount; i++) {
+		if (frameCount % 120 === 0) {
+			attack(randNumber());
+		}
 	}
 
 	for (let i = ammos.length - 1; i >= 0; i--) {
@@ -67,6 +70,11 @@ function draw() {
 	if (rightDown) {
 		ship.move(ship.speed);
 	}
+
+	if (spaceDown && frameCount % 10 === 0) {
+		let ammo = new Ammo(ship.x, height - ship.size);
+		ammos.push(ammo);
+	}
 }
 
 function attack(rand) {
@@ -82,8 +90,7 @@ function keyPressed() {
 		case LEFT_ARROW:
 			return leftDown = true;
 		case 32:
-			let ammo = new Ammo(ship.x, height - ship.size);
-			ammos.push(ammo);
+			return spaceDown = true;
 	}
 }
 
@@ -93,5 +100,7 @@ function keyReleased() {
 			return rightDown = false;
 		case LEFT_ARROW:
 			return leftDown = false;
+		case 32:
+			return spaceDown = false;
 	}
 }
