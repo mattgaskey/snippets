@@ -7,8 +7,8 @@ function Ball() {
 	this.reflectY = false;
 	this.reflectX = false;
 
-	this.vx = round(random(1, this.velocity));
-	this.vy = round(random(1, this.velocity));
+	this.vx = round(random(2, this.velocity));
+	this.vy = round(random(2, this.velocity));
 
 	this.show = function() {
 		fill(255);
@@ -38,11 +38,11 @@ function Ball() {
 
 		if (contactLeftX && paddleLeftOffset || contactRightX && paddleRightOffset) {
 				this.vx = round(random(this.vx, this.vx*1.5));
-				this.vy = round(random(this.vy, this.vy*1.5));
+				this.vy = round(random(this.vy, this.vy*1));
 			} else if ((contactLeftX && !paddleLeftOffset || contactRightX && !paddleRightOffset) && 
 						(this.vx > this.velocity || this.vy > this.velocity)) {
 				this.vx = round(this.velocity * random(0.3, 1));
-				this.vy = round(this.velocity * random(0.3, 1));
+				this.vy = round(this.velocity * random(0.6, 1));
 			}
 
 		this.reflectY ? this.top += this.vy : this.top -= this.vy;

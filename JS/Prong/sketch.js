@@ -1,6 +1,7 @@
 let paddleLeft;
 let paddleRight;
 let ball;
+let gameFont;
 let paddleX = 15;
 let leftUp = false;
 let leftDown = false;
@@ -15,6 +16,10 @@ let score = {
 };
 let gameInit = true;
 
+function preload() {
+	gameFont = loadFont('PressStart2p-Regular.ttf');
+}
+
 function setup() {
   createCanvas(800, 600);
 
@@ -28,6 +33,8 @@ function setup() {
 function draw() {
   if (ball.left < 0) {
     score.right++;
+    paddleLeft.reset();
+    paddleRight.reset();
     score.right >= 10
       ? ((isOver = true), (winner = "This guy -->"), (inPlay = false))
       : (ball = new Ball());
@@ -37,6 +44,8 @@ function draw() {
 
   if (ball.left > width) {
     score.left++;
+    paddleLeft.reset();
+    paddleRight.reset();
     score.left >= 10
       ? ((isOver = true), (winner = "<-- This guy"), (inPlay = false))
       : (ball = new Ball());
@@ -49,43 +58,49 @@ function draw() {
   if (gameInit) {
     textSize(60);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text("PRONG!", floor(width/2), floor(height/4));
     
-    textSize(36);
+    textSize(20);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text("Left Paddle:\nUP: <w>\nDOWN: <s>", floor(width/5), floor(height/1.8));
     
-    textSize(36);
+    textSize(20);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text("Right Paddle:\nUP: <UP>\nDOWN: <DOWN> ", floor(width/1.3), floor(height/1.8));
     
     textSize(36);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text("Press ENTER to Begin", floor(width/2), floor(height - 72));
   }
   else if (!inPlay && !isOver) {
-    textSize(180);
+    textSize(90);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text(
       score.left + "   " + score.right,
       floor(width / 2),
-      floor(height / 2 + 60)
+      floor(height / 2 + 30)
     );
-    textSize(40);
-    text("Press SPACEBAR to Start", floor(width / 2), floor(height - 100));
+    textSize(30);
+    text("Press SPACEBAR\n to Start", floor(width / 2), floor(height - 100));
   } else if (!inPlay && isOver) {
-    textSize(60);
+    textSize(30);
     textAlign(CENTER);
+    textFont(gameFont);
     fill(255, 255, 102);
     noStroke();
     text(

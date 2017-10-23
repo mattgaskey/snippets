@@ -24,4 +24,9 @@ function Paddle(side) {
 			this.bot += this.speed;
 		}
 	}
+
+	this.reset = function() {
+		this.top = height/2 - this.length/2;
+		this.bot = height/2 + this.length/2;
+	}
 }
