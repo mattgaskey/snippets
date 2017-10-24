@@ -1,50 +1,37 @@
 let bird;
-//apparent wind intensity
-let speed = 5;
-//array to store generated pipes/raindrops until they are off the screen
 let pipes = [];
 let raindrops = [];
-//vars to store image locations
 let img_bird;
-
-let score = 0;
-//game flag
+let score = -2;
+let highScore = 0;
 let isDead = false;
-//store framerate
 let frames = 80;
-//score needed to move to next level
 let scoreThreshold = 5;
-//size of opening between pipes
 let opening = 100;
+let full = false;
+
 
 
 function preload() {
-	//load images to be used on canvas
 	img_bird = loadImage('bird.png');
 }
 
-function setup() { 
-	//make a canvas with w,h
-  createCanvas(400, 600);
-  //set the frameRate, default=60
-  frameRate(60);
+function setup() {
+	let w = full ? displayWidth : 400;
+	let h = full ? displayHeight : 600;
 
-  //populate the rain field
+  createCanvas(w, h);
+
   for (var i = 0; i < 1000; i++) {
     raindrops[i] = new Rain();
   }
-  //add a pipe to the array
-  pipes.push(new Pipe());
-  pipes.push(new Pipe());
-  //instance of the bird
+
   bird = new Bird();
 
-  //wait for input to start
   noLoop();
 } 
 
 function draw() {
-	//if bird crosses pipe without dying, increase score
 	if (frameCount % frames === 0 && isDead === false) {
 		score++;
 	}
@@ -56,9 +43,7 @@ function draw() {
 		}
 	}
 
-	//set the background color or image
   background(0);
-
 
   //draw the rain field with drops(n) where n = score*2
   for (var i = 0; i < (score)*2; i++) {
@@ -66,25 +51,27 @@ function draw() {
     raindrops[i].show();
   }
 
-  //add new pipes as the frames progress
   if (frameCount % frames/1.5 === 0) {
     pipes.push(new Pipe());
   }
-  //loop over the pipes array
+
   for (let i = pipes.length - 1; i > 0; i--) {
-  	//if the player dies, don't update the next pipe
+
   	if (!isDead) {
   		pipes[i].update();
   	}
     pipes[i].show();
     
-    //if bird hits pipe game over
+
     if (pipes[i].hits(bird)) {
       isDead = true;
-      // noLoop();
+
+      if (bird.y >= height) {
+      	die();
+      }
     }
-    //as pipes leave the screen, remove them from the array
-    if (pipes[i].offscreen()) {
+
+    if (pipes.length > 0 && pipes[i].offscreen()) {
       pipes.splice(i, 1);
     }
   }
@@ -92,20 +79,49 @@ function draw() {
   bird.update();
   bird.show();
   
-  //score display
-  textSize(60);
-  textStyle(BOLD);
-  textAlign(CENTER);
-  fill(255, 255, 102);
-  text(score, floor(width/2), floor(height/8));
+
+  if (score > 0) {
+	  textSize(60);
+	  textStyle(BOLD);
+	  textAlign(CENTER);
+	  fill(255, 255, 102);
+	  text(score, floor(width/2), floor(height/8));
+	 }
   
+	textSize(20);
+	textStyle(BOLD);
+	textAlign(RIGHT);
+	fill(255, 255, 102);
+	text(`Record: ${score > highScore ? score : highScore}`, floor(width - 10), 30);
   
 }
 
+function die() {
+	noLoop();
+	isDead = false;
+	if (score > highScore) {
+		highScore = score;
+	}
+	score = -2;
+	opening = 100;
+	setup();
+	pipes = [];
+	bird.y = height/2;
+	draw();
+}
+
 function keyPressed() {
-	//when player is alive, spacebar starts game and bounces bird
   if (key == ' ' && !isDead) {
   	loop();
     bird.up();
   }
+}
+
+
+function touchEnded() {
+	if (!isDead && mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+		loop();
+		bird.up();
+	}
+	return false;
 }

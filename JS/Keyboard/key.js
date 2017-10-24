@@ -3,7 +3,7 @@ function Key(note, freq) {
 	this.freq = freq;
 
 	this.osc = new p5.Oscillator();
-	this.osc.setType('sawtooth');
+	this.osc.setType('sine');
 	this.osc.freq(freq);
 	this.osc.amp(0.5, 0.03);
 
