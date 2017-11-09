@@ -1,0 +1,154 @@
+body {
+  background: #212121;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 500px;
+  margin: 100px 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 40px;
+  height: 55px;
+  background: white;
+  -webkit-clip-path: polygon(36% 40%, 0 50%, 36% 60%, 50% 100%, 63% 60%, 100% 50%, 63% 40%, 50% 0);
+  clip-path: polygon(36% 40%, 0 50%, 36% 60%, 50% 100%, 63% 60%, 100% 50%, 63% 40%, 50% 0);
+}
+
+.star1 {
+  top: 270px;
+  left: 25%;
+  animation: twinkle 3s linear infinite;
+}
+
+.star2 {
+  top: 380px;
+  left: 34%;
+  animation: twinkle 4s linear infinite;
+}
+
+.star3 {
+  top: 130px;
+  left: 41%;
+  animation: twinkle 6s linear infinite;
+}
+
+.star4 {
+  top: 210px;
+  left: 50%;
+  animation: twinkle 2s linear infinite;
+}
+
+.star5 {
+  top: 180px;
+  left: 70%;
+  animation: twinkle 5s linear infinite;
+}
+
+.moon {
+  position: absolute;
+  top: 120px;
+  left: 42%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  transform: rotate(100deg);
+  box-shadow: 25px 25px 0 0 #d69a19;
+}
+
+.moon::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 0 #fffa70
+}
+
+.cloud {
+  position: absolute;
+  left: -150px;
+  top: 240px;
+  width: 100px;
+  height: 50px;
+  background: #eee1e3;
+  border-radius: 20px;
+  box-shadow: -3px 6px 3px 1px #222;
+  animation: wave 15s linear infinite;
+}
+.cloud::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 70%;
+  height: 100%;
+  background: #eee1e3;
+  border-radius: 20px;
+  box-shadow: -3px 6px 3px 1px #222;
+}
+.cloud::after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: -25px;
+  width: 150%;
+  height: 100%;
+  background: #e1e1e1;
+  border-radius: 20px;
+  box-shadow: -3px 6px 3px 1px #222;
+}
+
+@keyframes twinkle {
+  0% {
+    background: white;
+  }
+  50% {
+    background: #212121;
+  }
+  100% {
+    background: white;
+  }
+}
+
+@keyframes wave {
+  from {
+    left: -150px;
+  }
+  to {
+    left: calc(100vw + 150px);
+  }
+}
+
+@media all and (max-width: 400px) {
+  .moon {
+    left: 0;
+    margin: 0 25%;
+  }
+  .cloud {
+     animation: wave 8s linear infinite;
+  }
+  .star1 {
+    left: 30px;
+  }
+  .star2 {
+    left: 190px;
+  }
+  .star3 {
+    left: 100px;
+  }
+  .star4 {
+    top: 260px; 
+  }
+}
