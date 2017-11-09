@@ -11,7 +11,7 @@ function draw() {
 		let p = new Particle();
 		particles.push(p);
 	}
-	particles.forEach((particle, i) => {
+	particles.reverse().forEach((particle, i) => {
 		particle.update();
 		particle.show();
 		if (particle.is_outside_canvas) {
