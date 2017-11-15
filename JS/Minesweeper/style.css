@@ -1,0 +1,41 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.parent-container {
+	margin: 40px auto;
+	width: 401px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.toolbar-container {
+	display: flex;
+	width: 100%;
+	height: 100px;
+	background: rgb(200, 200, 200);
+	box-shadow: inset 0 0 10px #000000;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.display {
+	height: 60%;
+	width: 100px;
+	background: black;
+	color: red;
+	font-size: 3em;
+	font-family: 'Courier New', monospace;
+	font-weight: 700;
+}
+
+.reset {
+	height: 60%;
+	width: 80px;
+	background: blue;
+}
