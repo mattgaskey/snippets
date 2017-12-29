@@ -2,7 +2,7 @@ class Laser {
 	constructor(spos, heading) {
 		this.pos = createVector(spos.x, spos.y);
 		this.vel = p5.Vector.fromAngle(heading);
-		this.vel.mult(5);
+		this.vel.mult(8);
 		this.isOffScreen = false;
 	}
 
